@@ -13,9 +13,9 @@ if [[ ${TASK} == "coverage" ]]; then
 	cmake -D DEVELOPER=ON -D USE_CLN_NUMBERS=ON -D USE_GINAC=ON -D USE_COCOA=ON -D COVERAGE=ON ../ || return 1
 	
 	/usr/bin/time make ${MAKE_PARALLEL} resources || return 1
-	/usr/bin/time make ${MAKE_PARALLEL} lib_carl || return 1
-	/usr/bin/time make ${MAKE_PARALLEL} || return 1
-	/usr/bin/time make ${MAKE_PARALLEL} coverage-collect || return 1
+	#/usr/bin/time make ${MAKE_PARALLEL} lib_carl || return 1
+	#/usr/bin/time make ${MAKE_PARALLEL} || return 1
+	#/usr/bin/time make ${MAKE_PARALLEL} coverage-collect || return 1
 	
 	coveralls-lcov --repo-token ${COVERALLS_TOKEN} coverage.info
 elif [[ ${TASK} == "doxygen" ]]; then
@@ -43,7 +43,7 @@ elif [[ ${TASK} == "pycarl" ]]; then
 	source pycarl-env/bin/activate
 	
 	/usr/bin/time make ${MAKE_PARALLEL} resources || return 1
-	/usr/bin/time make ${MAKE_PARALLEL} lib_carl || return 1
+	#/usr/bin/time make ${MAKE_PARALLEL} lib_carl || return 1
 	
 	# Clone pycarl
 	git clone https://github.com/moves-rwth/pycarl.git
@@ -58,15 +58,15 @@ elif [[ ${TASK} == "addons" ]]; then
 	cmake -D BUILD_ADDONS=ON -D DEVELOPER=ON -D USE_CLN_NUMBERS=ON -D USE_GINAC=ON -D USE_COCOA=ON ../ || return 1
 	
 	/usr/bin/time make ${MAKE_PARALLEL} resources || return 1
-	/usr/bin/time make ${MAKE_PARALLEL} lib_carl || return 1
-	/usr/bin/time make ${MAKE_PARALLEL} || return 1
-	/usr/bin/time make -j1 CTEST_OUTPUT_ON_FAILURE=1 test || return 1
+	#/usr/bin/time make ${MAKE_PARALLEL} lib_carl || return 1
+	#/usr/bin/time make ${MAKE_PARALLEL} || return 1
+	#/usr/bin/time make -j1 CTEST_OUTPUT_ON_FAILURE=1 test || return 1
 	
 else
 	/usr/bin/time make ${MAKE_PARALLEL} resources || return 1
-	/usr/bin/time make ${MAKE_PARALLEL} lib_carl || return 1
-	/usr/bin/time make ${MAKE_PARALLEL} || return 1
-	/usr/bin/time make -j1 CTEST_OUTPUT_ON_FAILURE=1 test || return 1
+	#/usr/bin/time make ${MAKE_PARALLEL} lib_carl || return 1
+	#/usr/bin/time make ${MAKE_PARALLEL} || return 1
+	#/usr/bin/time make -j1 CTEST_OUTPUT_ON_FAILURE=1 test || return 1
 fi
 
 cd ../

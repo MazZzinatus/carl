@@ -8,7 +8,8 @@ function install {
 }
 
 brew update --quiet
-brew install cln doxygen eigen llvm
+#brew install cln doxygen eigen llvm
+brew install cln doxygen llvm
 
 if [[ ${USE} == "g++-4.8" ]]; then
 	echo "g++-4.8 is not supported"
